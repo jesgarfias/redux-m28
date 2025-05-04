@@ -9,7 +9,7 @@ const Header=()=>{
              <Link style={{textDecoration:'none', color:'#111'}} to="/" ><HeaderTitleLogo>MedicalShop</HeaderTitleLogo></Link>
             <nav style={{display:'flex', alignItems:'center'}}>
                 <div>
-                    <Link to="cart" ><ShopBag/></Link>
+                    <Link to="/cart" ><ShopBag/></Link>
                     <span>{itemsInBack}</span>
                 </div>
             </nav>
