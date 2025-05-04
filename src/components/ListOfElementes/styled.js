@@ -24,17 +24,20 @@ const ImageProduct=styled.img`
     height: 90%;
 `
 const BtnContainer=styled.div`
-    background-color: #7aa5bb;
-    width: 40%;
-    border-radius: 2px;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.5s ease-in-out ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`
+const BtnCart=styled.button`
+    background: transparent;
+    cursor: pointer;
+    border: none;
 `
 export{
     ProductMainContainer,
     ProductCart,
     ImageContainer,
     ImageProduct, 
-    BtnContainer
+    BtnContainer,
+    BtnCart
 }

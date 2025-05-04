@@ -2,37 +2,47 @@ import Header from "../components/Header"
 import { useSelector, useDispatch } from "react-redux";
 import DeleteBtn from "../components/icons/DeleteBtn";
 import { deleteItem } from "../components/Redux/Actions/CartActions";
-import { CartElemetContainer, ElementImg, ElementImgContainer, ListContanier } from "./styled";
+import { CartElemetContainer, CartImgContainer, ElementImg, ElementImgContainer, ListContanier } from "./styled";
+import CarritoVacio from "../assets/CarritoVacio.png"
 const Cart=()=>{
     const elementCart=useSelector(state=>state.cartState.items);
     const deleteDispatch=useDispatch() 
     
     const handleDelete=(id)=>{   
         deleteDispatch(deleteItem(id))
+        console.log(elementCart);
     }
+    const cartItems=Object.values(elementCart)
     return(
         <>
             <Header/>
-            {elementCart.length===0? <p>carrito vacio</p>:
+            {cartItems.length===0? <CartImgContainer>
+                <img style={{width:'45%'}} src={CarritoVacio}/>
+                <p style={{fontSize:'3em'}}>carrito vacio</p>
+                </CartImgContainer>:
              <div>
-                {elementCart.map(element=>(
+                {cartItems.map(element=>(
                     <>
-                        <div style={{width:'70%'}}>
-                            <ListContanier>
-                                <li>Producto</li>
-                                <li>Precio</li>
-                            </ListContanier>
-                        </div>
                         <CartElemetContainer>
-                            <div style={{display:'flex'}}>
+                            <div style={{display:'flex', width:'55%', alignItems:'center', justifyContent:'space-evenly'}}>
                                 <ElementImgContainer>
                                     <ElementImg src={element.image}/>
                                 </ElementImgContainer>
-                                <p>{element.name}</p>
+                                <div>
+                                    <p>Producto</p>
+                                    <p>{element.name}</p>
+                                </div>
                             </div>
-                            <span>${element.price}</span>
                             <div>
-                                <button onClick={()=>handleDelete(element.id)}><DeleteBtn/></button>
+                                <p>Precio</p>
+                                <span>${element.price}</span>
+                            </div>
+                            <div>
+                                <p>Cantidad</p>
+                                <span>{element.quantity}</span>
+                            </div>
+                            <div>
+                                <button style={{cursor:'pointer'}} onClick={()=>handleDelete(element.id)}><DeleteBtn/></button>
                             </div>
                         </CartElemetContainer>
                     </>

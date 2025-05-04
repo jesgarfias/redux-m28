@@ -6,11 +6,12 @@ const Header=()=>{
     const itemsInBack=useSelector(state=>state.cartState.cartQuantity);
     return(
         <HeaderContainer>
-            <HeaderTitleLogo>MedicalShop</HeaderTitleLogo>
-            <nav>
-                <Link to="/" >Home</Link>
-                <Link to="cart" ><ShopBag/></Link>
-                <span>{itemsInBack}</span>
+             <Link style={{textDecoration:'none', color:'#111'}} to="/" ><HeaderTitleLogo>MedicalShop</HeaderTitleLogo></Link>
+            <nav style={{display:'flex', alignItems:'center'}}>
+                <div>
+                    <Link to="cart" ><ShopBag/></Link>
+                    <span>{itemsInBack}</span>
+                </div>
             </nav>
         </HeaderContainer>
     )

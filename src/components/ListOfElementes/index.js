@@ -1,5 +1,5 @@
 import {useSelector} from 'react-redux'
-import { ImageProduct, ProductCart, ProductMainContainer } from './styled';
+import { BtnCart, BtnContainer, ImageProduct, ProductCart, ProductMainContainer } from './styled';
 import ShopBag from '../icons/ShopBag';
 import './styled.css'
 import { useState } from 'react';
@@ -20,17 +20,19 @@ const ListOfElements=()=>{
     return(
         <>
          <ProductMainContainer>
-            {products.map((product,index)=>(
-                <ProductCart key={index} onMouseEnter={()=>setIsHover(index)} onMouseLeave={()=>setIsHover(null)}>
-                    <ImageProduct src={product.image} />
-                    <p>{product.name}</p>
-                    <p>${product.price}</p>
-                    <div className={isHover===index ?'add-btn show': 'add-btn'}>
-                        <ShopBag onClick={()=>handleAdd(product)}/>
-                        <button onClick={()=>handleAdd(product)}><ShopBag/></button>    
-                    </div>
-                </ProductCart>
-            ))}
+            {products.map((product,index)=>{
+                const quantity=elementInCart[product.id]?.quantity||0;
+                return(
+                    <ProductCart key={index} onMouseEnter={()=>setIsHover(index)} onMouseLeave={()=>setIsHover(null)}>
+                        <ImageProduct src={product.image} />
+                        <p>{product.name}</p>
+                        <p>${product.price}</p>
+                        <BtnContainer className={isHover===index ?'add-btn show': 'add-btn'}>
+                            <BtnCart onClick={()=>handleAdd(product)}><ShopBag/></BtnCart>    
+                        </BtnContainer>
+                    </ProductCart>
+                )
+            })}
          </ProductMainContainer>
         </>
     )
